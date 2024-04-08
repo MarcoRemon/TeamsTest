@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class TeamExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {NotFoundException.class})
-    protected ResponseEntity<Object> handleTeamNotFoundException(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleTeamNotFoundException(NotFoundException ex, WebRequest request) {
         String bodyOfResponse = ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
@@ -22,7 +22,7 @@ public class TeamExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(value = {InvalidRequestException.class})
-    protected ResponseEntity<Object> handleInvalidRequest(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleInvalidRequest(InvalidRequestException ex, WebRequest request) {
         String bodyOfResponse = ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
