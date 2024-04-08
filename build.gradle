@@ -11,6 +11,11 @@ java {
     sourceCompatibility = '17'
 }
 
+jar {
+    archiveFileName = 'teamtest.jar'
+}
+
+
 repositories {
     mavenCentral()
 }
