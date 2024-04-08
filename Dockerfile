@@ -12,6 +12,6 @@ COPY src ./src
 
 RUN ./gradlew clean build -x test
 
-COPY --from=build /app/build/libs/your-application.jar .
+COPY --from=build /app/build/libs/demo.jar .
 
 ENTRYPOINT ["java","-jar","/app.jar"]
