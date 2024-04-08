@@ -25,6 +25,7 @@ replay_pid*
 
 # Gradle specific
 .gradle/
+gradle/
 build/
 
 # IntelliJ IDEA specific
