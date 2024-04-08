@@ -10,8 +10,6 @@ COPY settings.gradle .
 
 COPY src ./src
 
-RUN ./gradlew clean build -x test
-
-COPY build/libs/teamtest.jar /app/app.jar
+COPY build/libs/*.jar /app/app.jar
 
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
