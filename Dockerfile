@@ -1,15 +1,19 @@
-FROM openjdk:17
+FROM gradle:7.5-jdk17 as build
 
-WORKDIR /app
+WORKDIR /home/gradle/src
 
-COPY gradle/ ./gradle/
-COPY gradlew ./
-
-COPY build.gradle .
-COPY settings.gradle .
+COPY build.gradle settings.gradle ./
 
 COPY src ./src
 
-COPY build/libs/*.jar /app/app.jar
+RUN gradle build --no-daemon
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+FROM openjdk:17-jdk-alpine
+
+COPY --from=build /home/gradle/src/build/libs/*.jar /app.jar
+
+WORKDIR /app
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","/app.jar"]
